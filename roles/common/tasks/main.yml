@@ -1,0 +1,33 @@
+---
+- name: Hello
+  shell: "echo hello"
+  tags:
+    - hello
+
+- name: Bye
+  shell: "echo bye"
+  tags:
+    - bye
+- copy:
+    src: child.sh
+    dest: /tmp/child.sh
+    owner: vagrant
+    group: vagrant
+    mode: 0755
+
+- copy:
+    src: parent.sh
+    dest: /tmp/parent.sh
+    owner: vagrant
+    group: vagrant
+    mode: 0755
+
+- name: calling parent script File
+  shell: "sh /tmp/parent.sh"
+
+- file:
+    path: /tmp/{{ item }}
+    state: absent
+  with_items:
+    - parent.sh
+    - child.sh
