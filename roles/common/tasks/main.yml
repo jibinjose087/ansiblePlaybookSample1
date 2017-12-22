@@ -1,14 +1,6 @@
 ---
-- name: Hello
-  shell: "echo hello"
-  tags:
-    - hello
-
-- name: Bye
-  shell: "echo bye"
-  tags:
-    - bye
-- copy:
+- name: Copying necessary script file to stop the application
+  copy:
     src: child.sh
     dest: /tmp/child.sh
     owner: vagrant
