@@ -1,0 +1,12 @@
+- name: copy start-stop scripts to host test_server
+  copy:
+    src: "{{ item }}"
+    dest: "{{ script_loc }}/{{ item }}"
+    owner: vagrant
+    group: vagrant
+    mode: 0755
+  with_items:
+    - pstart.sh
+    - pstop.sh
+    - start.sh
+    - stop.sh
